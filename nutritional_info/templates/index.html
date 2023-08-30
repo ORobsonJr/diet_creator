@@ -1,11 +1,63 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora nutricional</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <body>
+   <div class="modal-body row" id="columns">
+    <div class="col-md-6" id="colum1" style="position: relative; background-color: black; z-index: -2;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('https://img.freepik.com/premium-photo/healthy-lifestyle-proper-nutrition-diet-health-support-good-food-exercise-striving-fitness-heart-sports-gym-motivation-good-mood-attitude-habits-vegetables-fruits_771426-4972.jpg'); background-size: cover; z-index: -1;"></div>
+
+    <div class="container">
+    <h1>Diet Creator</h1>
+    <p>Um novo conceito de criar dietas utilizando a internet.</p>
+    <button type="button" class="btn btn-primary">Criar dieta</button>
+    </div>
     
+  </div>
+  <div class="col-md-6" id="colum2">
+    <form class="form" id="form-class" action="{% url 'post_form' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+          <h3>Eu sou:</h3>
+          <br>
+          <input type="checkbox" class="btn-check" id="male" name="gender" value="male" autocomplete="off">
+          <label class="btn btn-primary" name="male" for="male" style="background-color: rgb(67, 94, 248);">Homem</label>
+          <br>
+          <input type="checkbox" class="btn-check" id="female" name="gender" value="female" autocomplete="off">
+          <label class="btn btn-primary" name="female" for="female" style="background-color: rgb(255, 67, 145);">Mulher</label>
+          <br>
+
+          <label for="numberField">Digite sua altura sem pontos:</label>
+          <input type="number" class="form-control" id="height" maxlength="3" name="height" placeholder="Ex.: 187" required>
+
+      </div>
+      <label for="numberField">Digite o seu peso</label>
+      <input type="number" class="form-control" id="numberField" maxlength="3" name="weight" placeholder="Ex.: 78" required>
+
+      <label for="numberField">Digite a sua idade</label>
+      <input type="number" class="form-control" id="numberField" maxlength="2" name="age" placeholder="Ex.: 20" required>
+      
+      <select class="form-select" id="list_form" aria-label="Default select example" name="activity_level" required>
+          <option value="0" selected>Selecione o seu nível de atividade física</option>
+          <option value="1">Leve</option>
+          <option value="2">Moderada</option>
+          <option value="3">Intensa</option>
+      </select>
+      <br>
+      <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+  </div>
+    </form>
+    </div> 
+
+  <script src="{% static 'js/form.js' %}"></script>
 </body>
-</html>m
+</html>
