@@ -1,4 +1,6 @@
 
+/*Open form controll*/
+
 // Avoid double selection in male and female checkbox selection
 document.addEventListener("DOMContentLoaded", function() {
   const checkboxes = document.querySelectorAll(".btn-check");
@@ -70,7 +72,7 @@ document.getElementById("form-class").addEventListener("submit", function(event)
   }
 }
 );
-
+/*Close form controll*/
 
 
   

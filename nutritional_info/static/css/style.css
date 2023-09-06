@@ -2,17 +2,17 @@ body {
     font-family: 'Comfortaa', sans-serif;
     margin-top: 30px;
     margin: 0;
-    padding: 0;
     height: 100%;
 
 }
 
-
-#columns {
-    min-height: 100vh;
-    text-align: center;
-
+/* Open nav bar */
+li {
+    color: rgb(0, 255, 136);
 }
+
+
+/* Open form layout */
 
 .form {
     margin-left: 15%;
@@ -20,14 +20,49 @@ body {
     display: flex;
     flex-direction: column;
     padding: 70px 0;
-
-
+    background-color: rgb(114, 248, 185);
+    border-radius: 20px;
+    text-align: center;
 }
 
-.container {
+input {
+    margin: 0 auto;
+    max-width: 70%;
+}
+
+select {
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px;
+    max-width: 70%;
+}
+
+button[type="submit"]{
+    margin-top: 20px;
+    min-width: 120px;
+}
+
+/* Close form layout */
+
+#container-cover {
     z-index: 1;
     color: white;
-    padding: 30% 0;
+    min-width: max-content;
+    text-align: center;
+    padding: 170px;
 
 }
 
+#container-works {
+    padding: 70px;
+}
+
+.cover {
+    text-align: center;
+    color: rgb(0, 255, 136)
+}
+
+#nav-bar {
+    padding-top: 9vh;
+}
+ 

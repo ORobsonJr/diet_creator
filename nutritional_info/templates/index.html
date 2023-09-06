@@ -12,34 +12,48 @@
 
 </head>
 <body>
-   <div class="modal-body row" id="columns">
-    <div class="col-md-6" id="colum1" style="position: relative; background-color: black; z-index: -2;">
+    <div class="cover" id="colum1" style="position: relative; height: 100vh; width: 100%;  background-color: black; z-index: -2;">
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('https://img.freepik.com/premium-photo/healthy-lifestyle-proper-nutrition-diet-health-support-good-food-exercise-striving-fitness-heart-sports-gym-motivation-good-mood-attitude-habits-vegetables-fruits_771426-4972.jpg'); background-size: cover; z-index: -1;"></div>
-
-    <div class="container">
-    <h1>Diet Creator</h1>
-    <p>Um novo conceito de criar dietas utilizando a internet.</p>
-    <button type="button" class="btn btn-primary">Criar dieta</button>
-    </div>
-    
+      <ul class="nav justify-content-center" id="nav-bar">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">How it works</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Calculate your nutrients</a>
+        </li>
+      </ul>
+      
+      
+      <div class="container" id="container-cover">
+      <h1>Diet Creator</h1>
+      <p>Um novo conceito de criar dietas utilizando a internet.</p>
+      <button type="button" class="btn btn-primary">Criar dieta</button>
+      </div>
   </div>
-  <div class="col-md-6" id="colum2">
+
+  <div class="container" id="container-works">
+    <h1>Como o Diet Creator funciona</h1>
+    <p>O Diet Creator nasceu como uma necessidade de ajudar pessoas que estão querendo iniciar uma vida mais saúdavel, porém não sabem por onde começar</p>
+    <p>Através da plataforma é possível calcular suas necessidades nutricionais e até mesmo criar um cardápio baseado nesses dados.</p>
+    <p><bold>Atenção</bold> Vale ressaltar que antes de qualquer medida a ser tomada consulte um profissional da área.</p>
+  </div>
+
     <form class="form" id="form-class" action="{% url 'post_form' %}" method="post">
       {% csrf_token %}
       <div class="form-group">
-          <h3>Eu sou:</h3>
-          <br>
-          <input type="checkbox" class="btn-check" id="male" name="gender" value="male" autocomplete="off">
-          <label class="btn btn-primary" name="male" for="male" style="background-color: rgb(67, 94, 248);">Homem</label>
-          <br>
-          <input type="checkbox" class="btn-check" id="female" name="gender" value="female" autocomplete="off">
-          <label class="btn btn-primary" name="female" for="female" style="background-color: rgb(255, 67, 145);">Mulher</label>
-          <br>
+        <h3>Eu sou:</h3>
+        <br>
+        <input type="checkbox" class="btn-check" id="male" name="gender" value="male" autocomplete="off">
+        <label class="btn btn-primary" name="male" for="male" style="background-color: rgb(67, 94, 248);">Homem</label>
+      
+        <input type="checkbox" class="btn-check" id="female" name="gender" value="female" autocomplete="off">
+        <label class="btn btn-primary" name="female" for="female" style="background-color: rgb(255, 67, 145);">Mulher</label>
+        <br>
+        <br>
+        <label for="numberField">Digite sua altura sem pontos:</label>
+        <input type="number" class="form-control" id="height" maxlength="3" name="height" placeholder="Ex.: 187" required>
 
-          <label for="numberField">Digite sua altura sem pontos:</label>
-          <input type="number" class="form-control" id="height" maxlength="3" name="height" placeholder="Ex.: 187" required>
-
-      </div>
+      
       <label for="numberField">Digite o seu peso</label>
       <input type="number" class="form-control" id="numberField" maxlength="3" name="weight" placeholder="Ex.: 78" required>
 
@@ -54,9 +68,11 @@
       </select>
       <br>
       <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
-  </div>
     </form>
     </div> 
+    <div class="container">
+      <br>
+    </div>
 
   <script src="{% static 'js/form.js' %}"></script>
 </body>
