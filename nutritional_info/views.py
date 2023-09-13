@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponse
+
 from django.views.decorators.http import require_POST
 
 # Create your views here.
@@ -11,16 +11,47 @@ class GetInfos(TemplateView):
 def post_form(request):
     if request.method =='POST':
         #Process gender checkboxes
-        gender = request.POST.get('gender')
-        height = request.POST.get('height')
-        weight = request.POST.get('weight')
-        age = request.POST.get('age')
-        activity_level = request.POST.get('activity_level')
+        gender = str(request.POST.get('gender'))
+        height = int(request.POST.get('height'))
+        weight = int(request.POST.get('weight'))
+        age = int(request.POST.get('age'))
+        goal = int(request.POST.get('activity_level'))
 
 
-        #Run something
+        """
+        Calculate TMB
+        """
+        if gender == 'male':
+            TMB = 66.5+(13.75*weight)+(5.003*height)-(6.755*age)
 
-        return HttpResponse(200)
+        if gender == 'female':
+            TMB = 665.1+(9.563*weight)+(1.850*height)-(4.676*age)
+        
+        """
+        Calculate gain, mantain or lose weight
+        """
+        GAIN_WEIGHT = 400
+        LOSE_WEIGHT = -400
+        MANTAIN_WEIGHT = 0
+
+        if goal == 1:
+            #lose weight
+            calories_per_day = TMB + LOSE_WEIGHT
+
+        elif goal == 2:
+            #gain weight
+            calories_per_day = TMB + GAIN_WEIGHT
+
+        elif goal == 3:
+            calories_per_day = TMB + MANTAIN_WEIGHT
+
+        else:
+            print(f'[{__file__}] Some wrong value sent, please check for development team')
+
+
+
+        return render(request, 'index.html', {'TMB': int(TMB), "GOAL": int(calories_per_day)})
     
-    return HttpResponse(500)
+
+
 

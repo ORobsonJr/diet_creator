@@ -12,14 +12,14 @@
 
 </head>
 <body>
-    <div class="cover" id="colum1" style="position: relative; height: 100vh; width: 100%;  background-color: black; z-index: -2;">
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('https://img.freepik.com/premium-photo/healthy-lifestyle-proper-nutrition-diet-health-support-good-food-exercise-striving-fitness-heart-sports-gym-motivation-good-mood-attitude-habits-vegetables-fruits_771426-4972.jpg'); background-size: cover; z-index: -1;"></div>
-      <ul class="nav justify-content-center" id="nav-bar">
+    <div class="cover" id="colum1" style="position: relative; height: 100vh; width: 100%;  background-color: black; z-index: 1;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: url('https://img.freepik.com/premium-photo/healthy-lifestyle-proper-nutrition-diet-health-support-good-food-exercise-striving-fitness-heart-sports-gym-motivation-good-mood-attitude-habits-vegetables-fruits_771426-4972.jpg'); background-size: cover; z-index: -3;"></div>
+      <ul class="nav justify-content-center" id="nav-bar" style="position: relative;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">How it works</a>
+          <a class="nav-link active" aria-current="page" href="#container-works">Como isso funciona</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Calculate your nutrients</a>
+          <a class="nav-link" href="#form-class">Calcule seus nutrientes</a>
         </li>
       </ul>
       
@@ -27,7 +27,7 @@
       <div class="container" id="container-cover">
       <h1>Diet Creator</h1>
       <p>Um novo conceito de criar dietas utilizando a internet.</p>
-      <button type="button" class="btn btn-primary">Criar dieta</button>
+      <a type="button" class="btn btn-primary" href="#form-class">Criar dieta</a>
       </div>
   </div>
 
@@ -36,8 +36,8 @@
     <p>O Diet Creator nasceu como uma necessidade de ajudar pessoas que estão querendo iniciar uma vida mais saúdavel, porém não sabem por onde começar</p>
     <p>Através da plataforma é possível calcular suas necessidades nutricionais e até mesmo criar um cardápio baseado nesses dados.</p>
     <p><bold>Atenção</bold> Vale ressaltar que antes de qualquer medida a ser tomada consulte um profissional da área.</p>
-  </div>
 
+  </div>
     <form class="form" id="form-class" action="{% url 'post_form' %}" method="post">
       {% csrf_token %}
       <div class="form-group">
@@ -61,16 +61,20 @@
       <input type="number" class="form-control" id="numberField" maxlength="2" name="age" placeholder="Ex.: 20" required>
       
       <select class="form-select" id="list_form" aria-label="Default select example" name="activity_level" required>
-          <option value="0" selected>Selecione o seu nível de atividade física</option>
-          <option value="1">Leve</option>
-          <option value="2">Moderada</option>
-          <option value="3">Intensa</option>
+          <option value="0" selected>Selecione o seu objetivo</option>
+          <option value="1">Perder peso</option>
+          <option value="2">Ganhar peso</option>
+          <option value="3">Manter peso</option>
       </select>
       <br>
       <button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
     </form>
     </div> 
-    <div class="container">
+    <br>
+    <div class="container" id="hide">
+      <h2>Necessidades nutricionais diárias</h2>
+      <h4>Sua taxa Metabólica basal é: {{TMB}} kcal</h4>
+      <h4>Sua necessidade calórica para atingir o seu objetivo é: {{GOAL}} kcal</h4>
       <br>
     </div>
 

@@ -7,7 +7,8 @@ body {
 }
 
 /* Open nav bar */
-li {
+
+li a{
     color: rgb(0, 255, 136);
 }
 
@@ -52,6 +53,7 @@ button[type="submit"]{
     padding: 170px;
 
 }
+
 
 #container-works {
     padding: 70px;

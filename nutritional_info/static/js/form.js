@@ -66,11 +66,13 @@ document.getElementById("form-class").addEventListener("submit", function(event)
   }
 
   else {
-    alert('Selecione todos os campos por favor')
-    console.log("functions validation has failed")
+    alert('Selecione todos os campos por favor');
+    console.log("functions validation has failed");
     event.preventDefault();
   }
 }
+
+
 );
 /*Close form controll*/
 
