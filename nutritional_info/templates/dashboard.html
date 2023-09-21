@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora nutricional</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="modal-body row" id="columns">
+    <div class="col-md-6" id="colum1">
+    <div class="container" id="basic-info">
+      {% if PERSONAL_INFO.GENDER == 'female'%}
+        <img src="{% static '/img/female.png' %}" id="profile-photo">
+
+      {% elif PERSONAL_INFO.GENDER == 'male'%}
+        <img src="{% static '/img/male.png' %}" id="profile-photo">
+
+      {% else %}
+        <img src="{% static '/img/unkown.jpg' %}" id="profile-photo">
+
+      {% endif %}
+
+      <div class="row">
+        <div class="col-md-4">
+        <h4 class="gr">Sua altura: </h4>
+        <h5>{{PERSONAL_INFO.HEIGHT}} Cm</h5>
+        </div>
+
+        <div class="col-md-4">
+        <h4 class="gr">Seu peso: </h4>
+        <h5>{{PERSONAL_INFO.WEIGHT}} Kg</h5>
+        </div>
+
+        <div class="col-md-4">
+        <h4 class="gr">Sua idade: </h4>
+        <h5>{{PERSONAL_INFO.AGE}}</h5>
+        </div>
+      </div>  
+
+    </div>
+    <div class="cold-md-6">
+    <div class="container" id="nutri-info">
+      <h3 class="gr">Necessidades nutricionais diárias</h3>
+      
+      <div class="row" id="nutri-info-row1">
+        <div class="col-md-4">
+          <h5 class="gr">Sua taxa Metabólica basal é:</h5>
+          <h6>{{TMB}} kcal</h6>
+        </div>
+
+        <div class="col-md-4">
+          <h5 class="gr">Necessidades calórica para atingir seu objetivo:</h5>
+          <h6>{{GOAL}} kcal</h6>
+        </div>
+      </div>
+    
+      <br>
+      <h3 class="gr">Divisão de micronutrientes</h3>
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th>Proteínas</th>
+              <th>Carboidratos</th>
+              <th>Gorduras</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="protein">{{PROTEIN}}</td>
+              <td id="carbo">{{CARBO}}</td>
+              <td id="fat">{{FAT}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <canvas id="myPieChart" style="max-width: 300px; max-height: 300px;"></canvas>
+    </div>
+    </div>
+    </div>
+  </div>
+    <script src="{% static 'js/charts.js'%}"></script>
+</body>
+</html>

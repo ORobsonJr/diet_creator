@@ -1,0 +1,60 @@
+body {
+    color: white;
+    text-align: center;
+}
+
+
+.container {
+    color:black;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+
+#colum1 {
+    background-color: #E8F5F1;
+    max-width: 30%;
+}
+
+
+img {
+    margin-top: 10px;
+    height: 15vh;
+    width: 15vh;
+    padding: 5px;
+    border: 20px  black;
+    border-radius: 5px;
+}
+
+#nutri-info-row1 .col-md-4 {
+    min-width: 40%;
+    margin: 10px;
+    padding: 10px;
+    background-color: #E8F5F1;
+    border-radius: 20px;
+}
+
+/*
+Edit table with nutritional info
+*/
+
+table {
+    max-width: 25%;
+    height: auto;
+}
+
+table tr, table th, table td{
+    border: 1px solid black;
+    text-align: center;
+    margin: 1px;
+}
+
+/*
+Edit font styles
+*/
+
+.gr {
+    color: #20C389;
+}
+

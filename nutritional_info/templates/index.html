@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora nutricional</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
 
@@ -71,13 +72,11 @@
     </form>
     </div> 
     <br>
-    <div class="container" id="hide">
-      <h2>Necessidades nutricionais diárias</h2>
-      <h4>Sua taxa Metabólica basal é: {{TMB}} kcal</h4>
-      <h4>Sua necessidade calórica para atingir o seu objetivo é: {{GOAL}} kcal</h4>
-      <br>
+    
     </div>
 
   <script src="{% static 'js/form.js' %}"></script>
+
+      
 </body>
 </html>

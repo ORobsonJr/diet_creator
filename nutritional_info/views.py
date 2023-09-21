@@ -48,9 +48,27 @@ def post_form(request):
         else:
             print(f'[{__file__}] Some wrong value sent, please check for development team')
 
+        #Around 10-35%, i'll choose 20%
+        REQUIRED_PROTEIN = round((((20*calories_per_day)/100)/4), 2)
+
+        #Around 45-65%, i'll choose 50%
+        REQUIRED_CARBO = round(((50*calories_per_day)/100)/4, 2)
+
+        #Around 20-35%, i'll choose 25%
+        REQUIRED_FAT = round(((25*calories_per_day)/100)/9, 2)
 
 
-        return render(request, 'index.html', {'TMB': int(TMB), "GOAL": int(calories_per_day)})
+        return render(request, 'dashboard.html', {'TMB': int(TMB), 
+                                              "GOAL": int(calories_per_day),
+                                              "PROTEIN": REQUIRED_PROTEIN,
+                                              "CARBO": REQUIRED_CARBO,
+                                              "FAT": REQUIRED_FAT,
+                                              "PERSONAL_INFO":{
+                                                  "GENDER": gender,
+                                                  "WEIGHT": weight,
+                                                  "HEIGHT": height,
+                                                  "AGE": age,
+                                              }})
     
 
 
