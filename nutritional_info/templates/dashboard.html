@@ -13,9 +13,10 @@
 
 </head>
 <body>
+  {% include 'elements/navbar.php' %}
   <div class="modal-body row" id="columns">
     <div class="col-md-6" id="colum1">
-    <div class="container" id="basic-info">
+      <div class="container" id="basic-info">
       {% if PERSONAL_INFO.GENDER == 'female'%}
         <img src="{% static '/img/female.png' %}" id="profile-photo">
 
@@ -29,23 +30,23 @@
 
       <div class="row">
         <div class="col-md-4">
-        <h4 class="gr">Sua altura: </h4>
-        <h5>{{PERSONAL_INFO.HEIGHT}} Cm</h5>
+          <h4 class="gr">Sua altura: </h4>
+          <h5>{{PERSONAL_INFO.HEIGHT}} Cm</h5>
         </div>
 
         <div class="col-md-4">
-        <h4 class="gr">Seu peso: </h4>
-        <h5>{{PERSONAL_INFO.WEIGHT}} Kg</h5>
+          <h4 class="gr">Seu peso: </h4>
+          <h5>{{PERSONAL_INFO.WEIGHT}} Kg</h5>
         </div>
 
         <div class="col-md-4">
-        <h4 class="gr">Sua idade: </h4>
-        <h5>{{PERSONAL_INFO.AGE}}</h5>
+          <h4 class="gr">Sua idade: </h4>
+          <h5>{{PERSONAL_INFO.AGE}}</h5>
         </div>
       </div>  
 
     </div>
-    <div class="cold-md-6">
+
     <div class="container" id="nutri-info">
       <h3 class="gr">Necessidades nutricionais diárias</h3>
       
@@ -59,6 +60,7 @@
           <h5 class="gr">Necessidades calórica para atingir seu objetivo:</h5>
           <h6>{{GOAL}} kcal</h6>
         </div>
+      </div>
       </div>
     
       <br>
@@ -83,9 +85,14 @@
       </div>
       <canvas id="myPieChart" style="max-width: 300px; max-height: 300px;"></canvas>
     </div>
-    </div>
-    </div>
-  </div>
+    <!-- <div class="col-md-6" id="colum2">
+      oiii
+        
+        </div> -->
+
+
+
+
     <script src="{% static 'js/charts.js'%}"></script>
 </body>
 </html>
