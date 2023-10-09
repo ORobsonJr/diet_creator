@@ -3,16 +3,20 @@ body {
     padding-top: 0;
 }
 
-.container {
+.container[id="basic-info"] {
     color:black;
     background-color: white;
     border-radius: 15px;
     margin-top: 20px;
 }
 
+#columns {
+    width: 100%;
+}
 
 #colum1 {
     background-color: #E8F5F1;
+    min-width: 30%;
     max-width: 30%;
 }
 
@@ -26,7 +30,7 @@ img {
     border-radius: 5px;
 }
 
-#nutri-info-row1 .col-md-4 {
+#nutri-info-row2 .col-md-4 {
     min-width: 40%;
     margin: 10px;
     padding: 10px;
@@ -34,20 +38,7 @@ img {
     border-radius: 20px;
 }
 
-/*
-Edit table with nutritional info
-*/
 
-table {
-    max-width: 25%;
-    height: auto;
-}
-
-table tr, table th, table td{
-    border: 1px solid black;
-    text-align: center;
-    margin: 1px;
-}
 
 /*
 Edit font styles
@@ -55,9 +46,59 @@ Edit font styles
 
 .gr {
     color: #20C389;
+    font-size: large;
 }
 
 
 
 /*Start edit colum2*/
+#colum2 {
+    min-width: 70%;
+    max-width: 70%;
+}
 
+
+
+/*Edit chart container*/
+
+#myPieChart {
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+}
+
+/**/
+
+#nutritional-info {
+    background-color: #E8F5F1;
+    border-radius: 5px;
+    color: white;
+    padding: 4%;
+    height: 100%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+#colum2 .col-md-5{
+    height: auto;
+    max-width: 32%;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+div[class="container nutrient"] {
+    background: linear-gradient(to top right, black, #023b27);
+    gap: 5px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    height: 30%;
+}
+
+
+div[class="container receipes"] {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border-radius: 5px;
+}

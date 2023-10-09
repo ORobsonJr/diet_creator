@@ -57,12 +57,16 @@ def post_form(request):
         #Around 20-35%, i'll choose 25%
         REQUIRED_FAT = round(((25*calories_per_day)/100)/9, 2)
 
+        #Calculate necessary water
+        water_per_day = round((35*55)/1000, 1)
+
 
         return render(request, 'dashboard.html', {'TMB': int(TMB), 
                                               "GOAL": int(calories_per_day),
                                               "PROTEIN": REQUIRED_PROTEIN,
                                               "CARBO": REQUIRED_CARBO,
                                               "FAT": REQUIRED_FAT,
+                                              "WATER": water_per_day,
                                               "PERSONAL_INFO":{
                                                   "GENDER": gender,
                                                   "WEIGHT": weight,

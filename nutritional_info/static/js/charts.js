@@ -1,9 +1,9 @@
 // Get the canvas element by its ID
 const ctx = document.getElementById('myPieChart').getContext('2d');
 
-var protein = parseFloat(document.getElementById('protein').textContent);
-var carbo = parseFloat(document.getElementById('carbo').textContent);
-var fat = parseFloat(document.getElementById('fat').textContent);
+var protein = parseFloat(document.getElementById('protein').getAttribute('data-my-data'));
+var carbo = parseFloat(document.getElementById('carbo').getAttribute('data-my-data'));
+var fat = parseFloat(document.getElementById('fat').getAttribute('data-my-data'));
 
 // Data for the pie chart
 const data = {
@@ -22,7 +22,7 @@ const options = {
 
 // Create a new pie chart instance
 const myPieChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'doughnut',
     data: data,
     options: options
 });

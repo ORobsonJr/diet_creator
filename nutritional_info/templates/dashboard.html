@@ -10,12 +10,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   {% include 'elements/navbar.php' %}
   <div class="modal-body row" id="columns">
-    <div class="col-md-6" id="colum1">
+    <div class="col-md-auto" id="colum1">
       <div class="container" id="basic-info">
       {% if PERSONAL_INFO.GENDER == 'female'%}
         <img src="{% static '/img/female.png' %}" id="profile-photo">
@@ -44,55 +44,80 @@
           <h5>{{PERSONAL_INFO.AGE}}</h5>
         </div>
       </div>  
-
     </div>
-
-    <div class="container" id="nutri-info">
-      <h3 class="gr">Necessidades nutricionais diárias</h3>
-      
-      <div class="row" id="nutri-info-row1">
-        <div class="col-md-4">
-          <h5 class="gr">Sua taxa Metabólica basal é:</h5>
-          <h6>{{TMB}} kcal</h6>
-        </div>
-
-        <div class="col-md-4">
-          <h5 class="gr">Necessidades calórica para atingir seu objetivo:</h5>
-          <h6>{{GOAL}} kcal</h6>
-        </div>
-      </div>
-      </div>
-    
       <br>
-      <h3 class="gr">Divisão de micronutrientes</h3>
-      <div class="container">
-        <table>
-          <thead>
-            <tr>
-              <th>Proteínas</th>
-              <th>Carboidratos</th>
-              <th>Gorduras</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="protein">{{PROTEIN}}</td>
-              <td id="carbo">{{CARBO}}</td>
-              <td id="fat">{{FAT}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <canvas id="myPieChart" style="max-width: 300px; max-height: 300px;"></canvas>
+      {% include 'elements/calendar.php'%}
     </div>
-    <!-- <div class="col-md-6" id="colum2">
-      oiii
+
+
+
+    <div class="col-md-6" id="colum2">
+      <div class="modal-body row">
+        <div class="col-md-5">
+          <div class="container-fluid custom-container">
+            <h2 class="gr">Gasto calórico diário (TMB)</h2>
+            <h4>{{TMB}}kcal</h4>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="container-fluid custom-container">
+            <h2 class="gr">Meta de calórias por dia</h2>
+            <h4>{{GOAL}}kcal</h4>
+            
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="container-fluid custom-container">
+            <h2 class="gr">Quantidade de água a ser ingerida por dia</h2>
+            <h4>{{WATER}}L</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-body row">
+        <div class="col-md-4 pull-left">
+          <div class="container-fluid custom-container" id="nutritional-info">
+            <div class="container nutrient">
+              <div class="gr" id="protein" data-my-data="{{PROTEIN}}" >Proteínas:</div><span>{{PROTEIN}}g</span>
+              <br>
+            </div> 
+
+            <div class="container nutrient">
+              <div class="gr" id="carbo" data-my-data="{{CARBO}}">Carboidratos: </div>{{CARBO}}g
+              <br>
+            </div> 
+
+            <div class="container nutrient">
+              <div class="gr" id="fat" data-my-data="{{FAT}}">Gorduras: </div>{{FAT}}g
+              <br>
+            </div> 
+          </div>  
+      </div>    
+        <div class="col-md-7">
+          <canvas id="myPieChart"></canvas>
+        </div>
+      </div>
+
+        <div class="container cover-receipes">
+          <div class="container receipes">
+            <h1>Ver receitas</h1>
+
+            <form action="" method="post">
+              <img style="cursor: pointer;" src="https://cdn.icon-icons.com/icons2/2942/PNG/512/arrow_down_circle_icon_183837.png" alt="Image Button" id="image-button">
+            </form>
+          </div>
+        </div>
+
         
-        </div> -->
+      </div>
 
-
-
-
+      
+        </div>
+      </div>
+    </div>
+  </div> 
     <script src="{% static 'js/charts.js'%}"></script>
 </body>
 </html>
