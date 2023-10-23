@@ -1,11 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView
+from .models import receipes
+from django.core.paginator import Paginator
+from django.views.decorators.http import require_POST, require_GET
 
-from django.views.decorators.http import require_POST
 
 # Create your views here.
+
+class global_vars:
+    #Global variables
+    data_post_form = {}
+
 class GetInfos(TemplateView):
     template_name = 'index.html'
+
 
 @require_POST
 def post_form(request):
@@ -60,20 +68,46 @@ def post_form(request):
         #Calculate necessary water
         water_per_day = round((35*55)/1000, 1)
 
+        global_vars.data_post_form = {
+                        'POST_FORM': {
+                            'TMB': int(TMB), 
+                            "GOAL": int(calories_per_day),
+                            "PROTEIN": REQUIRED_PROTEIN,
+                            "CARBO": REQUIRED_CARBO,
+                            "FAT": REQUIRED_FAT,
+                            "WATER": water_per_day,
+                            "PERSONAL_INFO":{
+                                "GENDER": gender,
+                                "WEIGHT": weight,
+                                "HEIGHT": height,
+                                "AGE": age,
+                        }}}
 
-        return render(request, 'dashboard.html', {'TMB': int(TMB), 
-                                              "GOAL": int(calories_per_day),
-                                              "PROTEIN": REQUIRED_PROTEIN,
-                                              "CARBO": REQUIRED_CARBO,
-                                              "FAT": REQUIRED_FAT,
-                                              "WATER": water_per_day,
-                                              "PERSONAL_INFO":{
-                                                  "GENDER": gender,
-                                                  "WEIGHT": weight,
-                                                  "HEIGHT": height,
-                                                  "AGE": age,
-                                              }})
+
+        return render(request, 'dashboard.html', global_vars.data_post_form)
     
+@require_GET
+def get_receipes(request):
+    items_per_page = 10
+    all_receipes = receipes.objects.all()
+    page = request.GET.get('page', 1)
+    paginator_ = Paginator(all_receipes, items_per_page)
+    #data = get_object_or_404(paginator_.get_page(page))
+
+    try:
+        data = paginator_.page(page)
+    except:
+        data = paginator_.page(1)
+
+    return render(request, 'dashboard.html', {"data": data, "POST_FORM": global_vars.data_post_form['POST_FORM']})
+
+    
+""" def submit_viewr(request):
+    if request == "GET":
+        get_receipes(request)
+
+    elif request == "POST":
+        post_form(request) """
 
 
 

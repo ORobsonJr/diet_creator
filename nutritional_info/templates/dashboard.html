@@ -17,10 +17,10 @@
   <div class="modal-body row" id="columns">
     <div class="col-md-auto" id="colum1">
       <div class="container" id="basic-info">
-      {% if PERSONAL_INFO.GENDER == 'female'%}
+      {% if POST_FORM.PERSONAL_INFO.GENDER == 'female'%}
         <img src="{% static '/img/female.png' %}" id="profile-photo">
 
-      {% elif PERSONAL_INFO.GENDER == 'male'%}
+      {% elif POST_FORM.PERSONAL_INFO.GENDER == 'male'%}
         <img src="{% static '/img/male.png' %}" id="profile-photo">
 
       {% else %}
@@ -31,17 +31,17 @@
       <div class="row">
         <div class="col-md-4">
           <h4 class="gr">Sua altura: </h4>
-          <h5>{{PERSONAL_INFO.HEIGHT}} Cm</h5>
+          <h5>{{POST_FORM.PERSONAL_INFO.HEIGHT}} Cm</h5>
         </div>
 
         <div class="col-md-4">
           <h4 class="gr">Seu peso: </h4>
-          <h5>{{PERSONAL_INFO.WEIGHT}} Kg</h5>
+          <h5>{{POST_FORM.PERSONAL_INFO.WEIGHT}} Kg</h5>
         </div>
 
         <div class="col-md-4">
           <h4 class="gr">Sua idade: </h4>
-          <h5>{{PERSONAL_INFO.AGE}}</h5>
+          <h5>{{POST_FORM.PERSONAL_INFO.AGE}}</h5>
         </div>
       </div>  
     </div>
@@ -56,14 +56,14 @@
         <div class="col-md-5">
           <div class="container-fluid custom-container">
             <h2 class="gr">Gasto calórico diário (TMB)</h2>
-            <h4>{{TMB}}kcal</h4>
+            <h4>{{POST_FORM.TMB}}kcal</h4>
           </div>
         </div>
 
         <div class="col-md-5">
           <div class="container-fluid custom-container">
             <h2 class="gr">Meta de calórias por dia</h2>
-            <h4>{{GOAL}}kcal</h4>
+            <h4>{{POST_FORM.GOAL}}kcal</h4>
             
           </div>
         </div>
@@ -71,7 +71,7 @@
         <div class="col-md-5">
           <div class="container-fluid custom-container">
             <h2 class="gr">Quantidade de água a ser ingerida por dia</h2>
-            <h4>{{WATER}}L</h4>
+            <h4>{{POST_FORM.WATER}}L</h4>
           </div>
         </div>
       </div>
@@ -80,17 +80,17 @@
         <div class="col-md-4 pull-left">
           <div class="container-fluid custom-container" id="nutritional-info">
             <div class="container nutrient">
-              <div class="gr" id="protein" data-my-data="{{PROTEIN}}" >Proteínas:</div><span>{{PROTEIN}}g</span>
+              <div class="gr" id="protein" data-my-data="{{POST_FORM.PROTEIN}}" >Proteínas:</div><span>{{POST_FORM.PROTEIN}}g</span>
               <br>
             </div> 
 
             <div class="container nutrient">
-              <div class="gr" id="carbo" data-my-data="{{CARBO}}">Carboidratos: </div>{{CARBO}}g
+              <div class="gr" id="carbo" data-my-data="{{POST_FORM.CARBO}}">Carboidratos: </div>{{POST_FORM.CARBO}}g
               <br>
             </div> 
 
             <div class="container nutrient">
-              <div class="gr" id="fat" data-my-data="{{FAT}}">Gorduras: </div>{{FAT}}g
+              <div class="gr" id="fat" data-my-data="{{POST_FORM.FAT}}">Gorduras: </div>{{POST_FORM.FAT}}g
               <br>
             </div> 
           </div>  
@@ -100,24 +100,54 @@
         </div>
       </div>
 
-        <div class="container cover-receipes">
           <div class="container receipes">
             <h1>Ver receitas</h1>
 
-            <form action="" method="post">
-              <img style="cursor: pointer;" src="https://cdn.icon-icons.com/icons2/2942/PNG/512/arrow_down_circle_icon_183837.png" alt="Image Button" id="image-button">
+            <form id="receipes-form" action="{% url 'get_receipes' %}" method="GET">
+              <img style="cursor: pointer;" id="clickable-image" src="https://cdn.icon-icons.com/icons2/2942/PNG/512/arrow_down_circle_icon_183837.png" alt="Image Button" id="image-button">
             </form>
-          </div>
-        </div>
 
-        
-      </div>
+            <div class="container receipes-list">
+               <!-- Display your data here -->
+              
+                {% for item in data %}
+                <div class="modal-body row" id="receipes-list">
+                  <div class="col-md-6 receipes1">
+                    <img style="height: 100px; width: 120px;" src="{% static 'img/receipes/' %}{{ item.image }}">
+                  </div>
+                  <div class="col-md-6 receipes2">
+                    <h6 class="gr">{{ item.name_receipe }}</h6>
+                    <p class="receipe-description">{{ item.tutorial }}</p>
+                  </div>
+                </div>
+                {% endfor %}
+              
+            </div>
+          </div>
+    </div>
 
       
-        </div>
-      </div>
-    </div>
-  </div> 
+  </div>
+
+
+<!-- Pagination controls -->
+<div class="pagination">
+  <span class="step-links">
+    {% if data.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ data.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current-page">Page {{ data.number }} of {{ data.paginator.num_pages }}.</span>
+
+    {% if data.has_next %}
+      <a href="?page={{ data.next_page_number }}">next</a>
+      <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+
     <script src="{% static 'js/charts.js'%}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>
