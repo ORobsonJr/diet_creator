@@ -8,7 +8,10 @@ from django.views.decorators.http import require_POST, require_GET
 # Create your views here.
 
 class global_vars:
-    #Global variables
+    """
+    Global variables
+    """
+    #We use this variable to store data for a longer time
     data_post_form = {}
 
 class GetInfos(TemplateView):
@@ -88,26 +91,23 @@ def post_form(request):
     
 @require_GET
 def get_receipes(request):
-    items_per_page = 10
+    """
+    Return the receips from Database
+    """
     all_receipes = receipes.objects.all()
-    page = request.GET.get('page', 1)
-    paginator_ = Paginator(all_receipes, items_per_page)
-    #data = get_object_or_404(paginator_.get_page(page))
 
-    try:
-        data = paginator_.page(page)
-    except:
-        data = paginator_.page(1)
+    for receipe in all_receipes:
+        #Return as a list format
+        receipe.ingredients = [ingrediente.strip() for ingrediente in receipe.ingredients.split(';')]
+    
+    return render(
+                request, 'dashboard.html', 
+                {"data": all_receipes, 
+                "POST_FORM": global_vars.data_post_form['POST_FORM']}
+                )
 
-    return render(request, 'dashboard.html', {"data": data, "POST_FORM": global_vars.data_post_form['POST_FORM']})
 
     
-""" def submit_viewr(request):
-    if request == "GET":
-        get_receipes(request)
-
-    elif request == "POST":
-        post_form(request) """
 
 
 
